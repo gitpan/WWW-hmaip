@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 package WWW::hmaip;
-$WWW::hmaip::VERSION = '0.01';
+$WWW::hmaip::VERSION = '0.02';
 use HTTP::Tiny;
 use 5.008;
 
@@ -18,12 +18,10 @@ BEGIN {
 
 sub get_ip {
     my $response = HTTP::Tiny->new->get('http://geoip.hidemyass.com/ip/');
+    return $response->{content} if $response->{success};
     die join(' ', 'Error fetching ip: ',
                   ($response->{status} or ''),
-                  ($response->{reason} or '')) unless $response->{success};
-    my $ip = $response->{content};
-    #chomp $ip;
-    $ip;
+                  ($response->{reason} or ''));
 }
 
 
@@ -41,7 +39,7 @@ WWW::hmaip - Returns your ip address using L<http://geoip.hidemyass.com/ip/>
 
 =head1 VERSION
 
-version 0.01
+version 0.02
 
 =head1 SYNOPSIS
 

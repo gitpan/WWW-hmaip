@@ -24,4 +24,4 @@ requires:
 resources:
   homepage: https://github.com/sillymoose/WWW-hmaip
   repository: https://github.com/sillymoose/WWW-hmaip.git
-version: '0.01'
+version: '0.02'
